@@ -3,6 +3,20 @@
 @section('content')
 
 <div class="container">
+    <p>
+        @if (session('edit'))
+        <div class="alert alert-success">
+        {{ session('edit') }}
+        </div>
+        @endif
+    </p>
+    <p>
+        @if (session('delete'))
+        <div class="alert alert-danger">
+        {{ session('delete') }}
+        </div>
+        @endif
+    </p>
     <table class="table">
         <thead>
             <tr>
@@ -19,9 +33,9 @@
                 <td>{{ $post->title }}</td>
                 <td>{{ $post->author }}</td>
                 <td>
-                    <a href="{{route('admin.posts.show', $post->id)}}" type="button" class="btn btn-primary">Show</a>
-                    <a href="{{route('admin.posts.edit', $post->id)}} " type="button" class="btn btn-secondary">Edit</a>
-                    <form action="" method="post" class="d-inline-block">
+                    <a href="{{ route('admin.posts.show', $post->id) }}" type="button" class="btn btn-primary">Show</a>
+                    <a href="{{ route('admin.posts.edit', $post->id) }} " type="button" class="btn btn-secondary">Edit</a>
+                    <form action="{{ route('admin.posts.destroy', $post->id) }}" method="post" class="d-inline-block">
                         @csrf
                         @method('DELETE')
                         <input type="submit" value="Delete" class="btn btn-danger">
