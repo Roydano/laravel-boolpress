@@ -8,6 +8,7 @@
             <tr>
                 <th scope="col">Codice</th>
                 <th scope="col">Titolo</th>
+                <th scope="col">Autore</th>
                 <th scope="col">Azioni</th>
             </tr>
         </thead>
@@ -16,6 +17,7 @@
             <tr>
                 <th scope="row">{{ $post->id }} </th>
                 <td>{{ $post->title }}</td>
+                <td>{{ $post->author }}</td>
                 <td>
                     <a href="{{route('admin.posts.show', $post->id)}}" type="button" class="btn btn-primary">Show</a>
                     <a href="{{route('admin.posts.edit', $post->id)}} " type="button" class="btn btn-secondary">Edit</a>
