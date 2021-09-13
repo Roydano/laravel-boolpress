@@ -10942,3 +10942,11 @@ a.text-dark:focus {
   }
 }
 
+.white {
+  color: white;
+}
+
+.white:hover {
+  color: red;
+}
+
