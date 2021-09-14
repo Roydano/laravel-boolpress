@@ -39,6 +39,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'author'=> 'required'
+       ]); 
+
         $data = $request->all( );
 
         $newPost = new Post( );
@@ -96,6 +102,12 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'author'=> 'required'
+       ]);
+       
         $data = $request->all();
         if($data['title'] != $post->title){
             $data['slug'] = Str::slug($data['title'], '-');
