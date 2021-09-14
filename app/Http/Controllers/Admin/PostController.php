@@ -42,7 +42,17 @@ class PostController extends Controller
         $data = $request->all( );
 
         $newPost = new Post( );
-        $newPost->slug = Str::slug($data['title'],'-');
+        $slug = Str::slug($data['title'], '-');
+        $slugBase = $slug;
+        $slugAttuale = Post::where('slug', $slug)->first();
+        $count = 1;
+
+        while($slugAttuale){
+            $slug = $slugBase . '-' . $count;
+            $slugAttuale = Post::where('slug', $slug)->first();
+            $count++;
+        }
+        $newPost->slug = $slug;
         $newPost->fill($data);
 
         $newPost->save( );
