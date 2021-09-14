@@ -87,6 +87,18 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $data = $request->all();
+        if($data['title'] != $post->title){
+            $data['slug'] = Str::slug($data['title'], '-');
+            $slugBase = $data['slug'];
+            $slugAttuale = Post::where('slug', $data['slug'])->first();
+            $count = 1;
+            while($slugAttuale){
+                $slug = $slugBase. '-' . $count;
+                $slugAttuale = Post::where('slug', $slug)->first();
+                $count++;
+            }
+
+            $data ['slug']=$slug;        }
 
         $post->update($data);
 

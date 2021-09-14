@@ -4,6 +4,7 @@
 
     <div class="container">
         <h2>{{$post->title}}</h2>
+        <p>{{$post->slug}}</p>
         <p>{{$post->description}}</p>
         <span class="badge bg-warning">{{$post->author}}</span>
 
